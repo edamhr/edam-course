@@ -1,32 +1,15 @@
+const video = document.getElementById("lectureVideo");
 
-const video = document.getElementById('lectureVideo');
-let lastTime = 0;
-let isSeeking = false;
+video.addEventListener("loadedmetadata", function () {
+  video.maxWatched = 0;
+});
 
-setInterval(() => {
-  if (!isSeeking && !video.paused && !video.seeking) {
-    lastTime = video.currentTime;
-  }
-}, 1000);
-
-video.addEventListener("seeking", () => {
-  isSeeking = true;
-  const jumpThreshold = 3;
-  if (Math.abs(video.currentTime - lastTime) > jumpThreshold) {
-    alert("건너뛰기가 제한되어 있습니다.");
-    video.currentTime = lastTime;
+video.addEventListener("timeupdate", function () {
+  // 사용자가 이미 본 구간까지만 재생 허용
+  if (video.currentTime > video.maxWatched + 0.5) {
+    video.currentTime = video.maxWatched;
+  } else {
+    video.maxWatched = video.currentTime;
   }
 });
 
-video.addEventListener("seeked", () => {
-  isSeeking = false;
-});
-
-video.addEventListener("ratechange", () => {
-  if (video.playbackRate !== 1) {
-    alert("배속 재생은 허용되지 않습니다.");
-    video.playbackRate = 1;
-  }
-});
-
-video.addEventListener("contextmenu", e => e.preventDefault());
