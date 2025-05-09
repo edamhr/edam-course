@@ -1,4 +1,3 @@
-지금 js 코드
 
 const video = document.getElementById("lectureVideo");
 
