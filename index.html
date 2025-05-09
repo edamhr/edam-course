@@ -1,34 +1,55 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <title>노무법인 이담 강의</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://player.cloudinary.com/player.min.js" type="text/javascript"></script>
 </head>
 <body>
   <h1>2025년 노무법인 이담 강의 테스트</h1>
 
-<iframe
-  id="cloudinary-player"
-  src="https://player.cloudinary.com/embed/?public_id=a1_yyluej&cloud_name=dgxqyxtwl&player[controls]=true"
-  width="720"
-  height="405"
-  allow="autoplay; fullscreen; encrypted-media"
-  allowfullscreen>
-</iframe>
+  <!-- Cloudinary JS Player Embed -->
+  <div
+    class="cld-video-player cld-fluid"
+    id="lecturePlayer"
+    data-cld-public-id="a1_yyluej"
+    data-cld-cloud-name="dgxqyxtwl"
+    data-cld-controls="true"
+    data-cld-mute="false"
+    data-cld-autoplay="false"
+    data-cld-preload="auto"
+  ></div>
 
-<div class="progress-container">
-  <div id="progressBar" class="progress-bar"></div>
-</div>
-<p id="progressText">진도율: 0%</p>
+  <!-- 진도율 UI -->
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
+  <p id="progressText">진도율: 0%</p>
 
+  <!-- 설문 링크 (기본 숨김) -->
+  <p id="surveyLink" style="display: none;">
+    👉 <a href="https://forms.gle/your_google_form_link" target="_blank">이수 설문 바로가기</a>
+  </p>
 
+  <!-- 제어 스크립트 -->
+  <script>
+    const player = cloudinary.videoPlayer("lecturePlayer");
 
+    player.on("timeupdate", function (e) {
+      const current = e.currentTime;
+      const duration = e.duration;
+      const percent = ((current / duration) * 100).toFixed(1);
 
+      document.getElementById("progressBar").style.width = percent + "%";
+      document.getElementById("progressText").textContent = "진도율: " + percent + "%";
 
-  <p><a href="https://forms.gle/your_google_form_link" target="_blank">👉 이수 설문 바로가기</a></p>
-
-  <script src="video-control.js"></script>
+      // 진도율이 100% 도달하면 설문 링크 표시
+      if (percent >= 100) {
+        document.getElementById("surveyLink").style.display = "block";
+      }
+    });
+  </script>
 </body>
 </html>
+
