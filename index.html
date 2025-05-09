@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>노무법인 이담 - 강의 수강</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>2025년 법정의무교육 강의</h1>
+
+  <video id="lectureVideo" controls width="720">
+    <source src="https://res.cloudinary.com/dgxqyxtwl/video/upload/v1746772925/a1_yyluej.mp4" type="video/mp4">
+    브라우저가 video 태그를 지원하지 않습니다.
+  </video>
+
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar"></div>
+  </div>
+  <p id="progressText">진도율: 0%</p>
+
+  <p id="certificateLink" style="display: none; font-weight: bold; margin-top: 20px;">
+    ✅ 수강 완료! 👉 <a href="certificate.pdf" download>이수증 다운로드</a>
+  </p>
+
+  <script src="video-control.js"></script>
+</body>
+</html>

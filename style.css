@@ -1,0 +1,26 @@
+
+body {
+  font-family: sans-serif;
+  padding: 30px;
+}
+h1 {
+  color: #1a237e;
+}
+.progress-container {
+  width: 720px;
+  height: 10px;
+  background-color: #ccc;
+  margin-top: 10px;
+}
+.progress-bar {
+  height: 100%;
+  background-color: #3f51b5;
+  width: 0%;
+}
+#progressText {
+  margin-top: 8px;
+  font-weight: bold;
+}
+#certificateLink {
+  font-size: 16px;
+}
